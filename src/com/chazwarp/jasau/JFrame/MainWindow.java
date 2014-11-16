@@ -10,6 +10,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -29,15 +30,15 @@ public class MainWindow {
 	static JMenuBar menuBar;
 	static JMenu optionsMenu;
 	static JMenuItem login;
-	static JMenuItem upload;
 	public static JProgressBar uploadProgress;
 	public static JTextField caption;
 	public static JTextField tags;
+	static JButton startUpload;
 	
 	public static JFrame CreateWindow() {
 		
 		try {
-			mainWindow.setIconImage(createImageIcon("/com/chazwarp/jasau/resources/Jasau.png").getImage());
+			mainWindow.setIconImage(CreateImageIcon("/com/chazwarp/jasau/resources/Jasau.png").getImage());
 		}
 		catch(NullPointerException e) {
 			e.printStackTrace();
@@ -52,21 +53,24 @@ public class MainWindow {
 		login = new JMenuItem("Login");
 		login.addActionListener(new LoginListener());
 		optionsMenu.add(login);
-		upload = new JMenuItem("Start New Upload");
-		upload.addActionListener(new StartNewUploadListener());
-		optionsMenu.add(upload);
 		
 		uploadProgress = new JProgressBar(0, 100);
 		uploadProgress.setValue(0);
 		uploadProgress.setStringPainted(true);
-		mainPanel.add(uploadProgress, CreateConstraints(GridBagConstraints.PAGE_END, GridBagConstraints.HORIZONTAL, 0, 2, 0, 1, 1, 1, 3, 1, 10, 2, 2, 2));
+		mainPanel.add(uploadProgress, CreateConstraints(GridBagConstraints.PAGE_END, GridBagConstraints.HORIZONTAL, 0, 2, 0, 1, 1, 1, 3, 1, 2, 2, 2, 2));
 		
 		caption = new JTextField();
 		caption.setText("Caption");
 		mainPanel.add(caption, CreateConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5));
 		tags = new JTextField();
-		tags.setText("Tags");
+		tags.setText("Tags - Separate Tags with Commas");
 		mainPanel.add(tags, CreateConstraints(GridBagConstraints.FIRST_LINE_END, GridBagConstraints.HORIZONTAL, 2, 0, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5));
+		
+		startUpload = new JButton();
+		startUpload.setIcon(new ImageIcon(CreateImageIcon("/com/chazwarp/jasau/resources/upload32.png").getImage(), "String"));
+		startUpload.setToolTipText("Start a New Upload");
+		startUpload.addActionListener(new StartNewUploadListener());
+		mainPanel.add(startUpload, CreateConstraints(GridBagConstraints.CENTER, 0, 1, 1, 1, 1, 1, 1, 3, 1, 5, 5, 5, 5));
 		
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -76,7 +80,7 @@ public class MainWindow {
 		return mainWindow;
 	}
 	
-	protected static ImageIcon createImageIcon(String path) {
+	protected static ImageIcon CreateImageIcon(String path) {
 		java.net.URL imgURL = MainWindow.class.getResource(path);
 		if(imgURL != null) {
 			return new ImageIcon(imgURL);
