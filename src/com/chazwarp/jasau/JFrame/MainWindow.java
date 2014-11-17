@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +21,9 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
 import com.chazwarp.jasau.JFrame.listeners.LoginListener;
+import com.chazwarp.jasau.JFrame.listeners.SavePreferencesListener;
 import com.chazwarp.jasau.JFrame.listeners.StartNewUploadListener;
+import com.chazwarp.jasau.settings.ConfigFile;
 
 public class MainWindow {
 
@@ -30,6 +33,7 @@ public class MainWindow {
 	static JMenuBar menuBar;
 	static JMenu optionsMenu;
 	static JMenuItem login;
+	static JMenuItem savePrefs;
 	public static JProgressBar uploadProgress;
 	public static JTextField caption;
 	public static JTextField tags;
@@ -53,25 +57,35 @@ public class MainWindow {
 		login = new JMenuItem("Login");
 		login.addActionListener(new LoginListener());
 		optionsMenu.add(login);
+		savePrefs = new JMenuItem("Save Preferences");
+		savePrefs.addActionListener(new SavePreferencesListener());
+		optionsMenu.add(savePrefs);
 		
 		uploadProgress = new JProgressBar(0, 100);
 		uploadProgress.setValue(0);
 		uploadProgress.setStringPainted(true);
-		mainPanel.add(uploadProgress, CreateConstraints(GridBagConstraints.PAGE_END, GridBagConstraints.HORIZONTAL, 0, 2, 0, 1, 1, 1, 3, 1, 2, 2, 2, 2));
+		mainPanel.add(uploadProgress, CreateConstraints(GridBagConstraints.PAGE_END, GridBagConstraints.HORIZONTAL, 0, 2, 1, 1, 0.5, 0, 3, 1, 2, 2, 2, 2));
 		
 		caption = new JTextField();
 		caption.setText("Caption");
-		mainPanel.add(caption, CreateConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5));
+		mainPanel.add(caption, CreateConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 1, 1, 0.5, 0, 1, 1, 5, 5, 5, 5));
 		tags = new JTextField();
 		tags.setText("Tags - Separate Tags with Commas");
-		mainPanel.add(tags, CreateConstraints(GridBagConstraints.FIRST_LINE_END, GridBagConstraints.HORIZONTAL, 2, 0, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5));
+		mainPanel.add(tags, CreateConstraints(GridBagConstraints.PAGE_START, GridBagConstraints.HORIZONTAL, 1, 0, 1, 1, 0.5, 1, 1, 1, 5, 5, 5, 5));
 		
 		startUpload = new JButton();
 		startUpload.setIcon(new ImageIcon(CreateImageIcon("/com/chazwarp/jasau/resources/upload32.png").getImage(), "String"));
 		startUpload.setToolTipText("Start a New Upload");
 		startUpload.addActionListener(new StartNewUploadListener());
-		mainPanel.add(startUpload, CreateConstraints(GridBagConstraints.CENTER, 0, 1, 1, 1, 1, 1, 1, 3, 1, 5, 5, 5, 5));
+		mainPanel.add(startUpload, CreateConstraints(GridBagConstraints.FIRST_LINE_END, GridBagConstraints.HORIZONTAL, 2, 0, 1, 1, 0.5, 0, 1, 1, 5, 5, 5, 5));
 		
+		if(ConfigFile.configExists()) {
+			try {
+				ConfigFile.readConfigFromFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		mainWindow.setBounds(0, 0, screenSize.width/2, screenSize.height/2);
@@ -91,7 +105,7 @@ public class MainWindow {
 		}
 	}
 	
-	private static GridBagConstraints CreateConstraints(int anchor, int fill, int gridX, int gridY, int ipadX, int ipadY, int weightX, int weightY, int gridWidth, int gridHeight, int insets1, int insets2, int insets3, int insets4) {
+	private static GridBagConstraints CreateConstraints(int anchor, int fill, int gridX, int gridY, int ipadX, int ipadY, double weightX, double weightY, int gridWidth, int gridHeight, int insets1, int insets2, int insets3, int insets4) {
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = anchor;
 		c.fill = fill;
