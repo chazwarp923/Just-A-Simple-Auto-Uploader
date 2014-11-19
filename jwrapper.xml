@@ -17,7 +17,6 @@
 <WindowsElevation>None</WindowsElevation>
 <WindowsElevationUiAccess>true</WindowsElevationUiAccess>
 <File classpath='yes'>dependencies/jumblr-0.0.10-jar-with-dependencies.jar</File>
-<File classpath='yes'>dependencies/scribe-1.3.5.jar</File>
 <JvmOptions>
 <JvmOption>-Xmx256m</JvmOption>
 </JvmOptions>
