@@ -1,10 +1,10 @@
 <jwrapper>
-<BundleName>Just Another Simple Auto Uploader</BundleName>
+<BundleName>Just A Simple Auto Uploader</BundleName>
 <SplashPNG>src/com/chazwarp/jasau/resources/Jasau.png</SplashPNG>
 <BundleLogoPNG>src/com/chazwarp/jasau/resources/Jasau.png</BundleLogoPNG>
 <InstallType>CurrentUser</InstallType>
 <App>
-  <Name>Just Another Simple Auto Uploader</Name>
+  <Name>Just A Simple Auto Uploader</Name>
   <LogoPNG>src/com/chazwarp/jasau/resources/Jasau.png</LogoPNG>
   <MainClass>com.chazwarp.jasau.Main</MainClass>
 </App>
@@ -15,8 +15,6 @@
 <Linux64JRE>JRE-1.7/linuxx64/jre1.7.0_13</Linux64JRE>
 <Mac64JRE>JRE-1.7/macos64/jre1.7.0_45.jre</Mac64JRE>
 <WindowsElevation>None</WindowsElevation>
-<WindowsElevationUiAccess>true</WindowsElevationUiAccess>
-<File classpath='yes'>dependencies/jumblr-0.0.10-jar-with-dependencies.jar</File>
 <JvmOptions>
 <JvmOption>-Xmx256m</JvmOption>
 </JvmOptions>
