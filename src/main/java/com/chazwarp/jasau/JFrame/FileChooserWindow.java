@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.JFrame;
+package main.java.com.chazwarp.jasau.JFrame;
 
 import java.io.File;
 

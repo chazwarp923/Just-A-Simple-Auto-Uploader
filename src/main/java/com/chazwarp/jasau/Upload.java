@@ -1,14 +1,15 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau;
+package main.java.com.chazwarp.jasau;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.SwingWorker;
 
-import com.chazwarp.jasau.JFrame.FileChooserWindow;
-import com.chazwarp.jasau.JFrame.MainWindow;
+import main.java.com.chazwarp.jasau.JFrame.FileChooserWindow;
+import main.java.com.chazwarp.jasau.JFrame.MainWindow;
 
 public class Upload extends SwingWorker<Void, Void> {
 	
@@ -17,7 +18,7 @@ public class Upload extends SwingWorker<Void, Void> {
 	static String[] tags;
 
 	@Override
-	protected Void doInBackground() throws Exception {
+	protected Void doInBackground() throws IllegalAccessException, InstantiationException, IOException {
 		images = FileChooserWindow.OpenNewImage();
 		
 		tags = splitString(MainWindow.tags.getText());

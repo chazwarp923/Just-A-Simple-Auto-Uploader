@@ -1,20 +1,20 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.JFrame.listeners;
+package main.java.com.chazwarp.jasau.Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import com.chazwarp.jasau.settings.ConfigFile;
+import main.java.com.chazwarp.jasau.Helper.ConfigHelper;
 
-public class SavePreferencesListener implements ActionListener {
+public class SaveCaptionAndTagsListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
-			ConfigFile.writeConfigToFile();
+			ConfigHelper.WriteCaptionAndTagsToFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

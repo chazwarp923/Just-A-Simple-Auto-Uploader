@@ -1,13 +1,14 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau;
+package main.java.com.chazwarp.jasau;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.chazwarp.jasau.JFrame.MainWindow;
+import main.java.com.chazwarp.jasau.JFrame.MainWindow;
+
 import com.tumblr.jumblr.JumblrClient;
 import com.tumblr.jumblr.types.Photo;
 import com.tumblr.jumblr.types.PhotoPost;

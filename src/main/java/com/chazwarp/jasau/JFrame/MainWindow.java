@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.JFrame;
+package main.java.com.chazwarp.jasau.JFrame;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -10,7 +10,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -20,10 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
-import com.chazwarp.jasau.JFrame.listeners.LoginListener;
-import com.chazwarp.jasau.JFrame.listeners.SavePreferencesListener;
-import com.chazwarp.jasau.JFrame.listeners.StartNewUploadListener;
-import com.chazwarp.jasau.settings.ConfigFile;
+import main.java.com.chazwarp.jasau.Helper.ConfigHelper;
+import main.java.com.chazwarp.jasau.Helper.IconHelper;
+import main.java.com.chazwarp.jasau.Helper.Strings;
+import main.java.com.chazwarp.jasau.Listeners.LoginListener;
+import main.java.com.chazwarp.jasau.Listeners.SaveCaptionAndTagsListener;
+import main.java.com.chazwarp.jasau.Listeners.StartNewUploadListener;
 
 public class MainWindow {
 
@@ -33,7 +34,7 @@ public class MainWindow {
 	static JMenuBar menuBar;
 	static JMenu optionsMenu;
 	static JMenuItem login;
-	static JMenuItem savePrefs;
+	static JMenuItem saveCapAndTag;
 	public static JProgressBar uploadProgress;
 	public static JTextField caption;
 	public static JTextField tags;
@@ -41,12 +42,7 @@ public class MainWindow {
 	
 	public static JFrame CreateWindow() {
 		
-		try {
-			mainWindow.setIconImage(CreateImageIcon("/com/chazwarp/jasau/resources/Jasau.png").getImage());
-		}
-		catch(NullPointerException e) {
-			e.printStackTrace();
-		}
+		IconHelper.setWindowIcon(mainWindow, Strings.RESOURCE_LOCATION + "Icon.png");
 		
 		menuBar = new JMenuBar();
 		mainWindow.setJMenuBar(menuBar);
@@ -57,9 +53,9 @@ public class MainWindow {
 		login = new JMenuItem("Login");
 		login.addActionListener(new LoginListener());
 		optionsMenu.add(login);
-		savePrefs = new JMenuItem("Save Preferences");
-		savePrefs.addActionListener(new SavePreferencesListener());
-		optionsMenu.add(savePrefs);
+		saveCapAndTag = new JMenuItem("Save Caption & Tags");
+		saveCapAndTag.addActionListener(new SaveCaptionAndTagsListener());
+		optionsMenu.add(saveCapAndTag);
 		
 		uploadProgress = new JProgressBar(0, 100);
 		uploadProgress.setValue(0);
@@ -74,14 +70,14 @@ public class MainWindow {
 		mainPanel.add(tags, CreateConstraints(GridBagConstraints.PAGE_START, GridBagConstraints.HORIZONTAL, 1, 0, 1, 1, 0.5, 1, 1, 1, 5, 5, 5, 5));
 		
 		startUpload = new JButton();
-		startUpload.setIcon(new ImageIcon(CreateImageIcon("/com/chazwarp/jasau/resources/upload32.png").getImage(), "String"));
+		startUpload.setIcon(IconHelper.CreateImageIcon(Strings.RESOURCE_LOCATION + "upload32.png"));
 		startUpload.setToolTipText("Start a New Upload");
 		startUpload.addActionListener(new StartNewUploadListener());
 		mainPanel.add(startUpload, CreateConstraints(GridBagConstraints.FIRST_LINE_END, GridBagConstraints.HORIZONTAL, 2, 0, 1, 1, 0.5, 0, 1, 1, 5, 5, 5, 5));
 		
-		if(ConfigFile.configExists()) {
+		if(ConfigHelper.CaptionAndTagsExists()) {
 			try {
-				ConfigFile.readConfigFromFile();
+				ConfigHelper.ReadCaptionAndTagsFromFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -92,17 +88,6 @@ public class MainWindow {
 		mainWindow.setLocationRelativeTo(null);//Centers The Window
 		
 		return mainWindow;
-	}
-	
-	protected static ImageIcon CreateImageIcon(String path) {
-		java.net.URL imgURL = MainWindow.class.getResource(path);
-		if(imgURL != null) {
-			return new ImageIcon(imgURL);
-		}
-		else {
-			System.err.println("Couldn't Find File: " + path);
-			return null;
-		}
 	}
 	
 	private static GridBagConstraints CreateConstraints(int anchor, int fill, int gridX, int gridY, int ipadX, int ipadY, double weightX, double weightY, int gridWidth, int gridHeight, int insets1, int insets2, int insets3, int insets4) {
