@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau.Helper;
+package com.chazwarp.jasau.Helper;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;

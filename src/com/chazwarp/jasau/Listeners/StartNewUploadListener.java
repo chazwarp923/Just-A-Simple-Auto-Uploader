@@ -1,12 +1,12 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau.Listeners;
+package com.chazwarp.jasau.Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import main.java.com.chazwarp.jasau.Upload;
+import com.chazwarp.jasau.Upload;
 
 public class StartNewUploadListener implements ActionListener{
 

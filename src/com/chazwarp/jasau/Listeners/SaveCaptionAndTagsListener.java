@@ -1,13 +1,13 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau.Listeners;
+package com.chazwarp.jasau.Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import main.java.com.chazwarp.jasau.Helper.ConfigHelper;
+import com.chazwarp.jasau.Helper.ConfigHelper;
 
 public class SaveCaptionAndTagsListener implements ActionListener {
 

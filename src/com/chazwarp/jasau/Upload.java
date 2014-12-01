@@ -1,15 +1,15 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau;
+package com.chazwarp.jasau;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.SwingWorker;
 
-import main.java.com.chazwarp.jasau.JFrame.FileChooserWindow;
-import main.java.com.chazwarp.jasau.JFrame.MainWindow;
+import com.chazwarp.jasau.JFrame.FileChooserWindow;
+import com.chazwarp.jasau.JFrame.MainWindow;
 
 public class Upload extends SwingWorker<Void, Void> {
 	

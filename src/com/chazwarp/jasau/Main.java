@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau;
+package com.chazwarp.jasau;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -12,14 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import main.java.com.chazwarp.jasau.Helper.ConfigHelper;
-import main.java.com.chazwarp.jasau.JFrame.MainWindow;
-
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TumblrApi;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
+import com.chazwarp.jasau.Helper.ConfigHelper;
+import com.chazwarp.jasau.JFrame.MainWindow;
 import com.tumblr.jumblr.JumblrClient;
 
 public class Main {
@@ -46,8 +45,6 @@ public class Main {
 			try {
 				ConfigHelper.ReadTokenFromFile();
 				SetClientToken();
-				System.out.println(Token);
-				System.out.println(TokenSecret);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau.Helper;
+package com.chazwarp.jasau.Helper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,8 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import main.java.com.chazwarp.jasau.Main;
-import main.java.com.chazwarp.jasau.JFrame.MainWindow;
+import com.chazwarp.jasau.Main;
+import com.chazwarp.jasau.JFrame.MainWindow;
 
 public class ConfigHelper {
 	

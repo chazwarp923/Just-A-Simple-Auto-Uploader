@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package main.java.com.chazwarp.jasau.JFrame;
+package com.chazwarp.jasau.JFrame;
 
 import java.awt.Toolkit;
 
@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import main.java.com.chazwarp.jasau.Helper.IconHelper;
-import main.java.com.chazwarp.jasau.Helper.Strings;
+import com.chazwarp.jasau.Helper.IconHelper;
+import com.chazwarp.jasau.Helper.Strings;
 
 public class PreferencesWindow {
 
