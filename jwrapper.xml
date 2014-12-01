@@ -6,7 +6,7 @@
 	<!-- The specification for one app within the bundle -->
 	<App>
 	  <Name>Just A Simple Auto Uploader</Name>
-	  <LogoPNG>resources/Jasau.png</LogoPNG>
+	  <LogoPNG>src/resources/Icon.png</LogoPNG>
 	  <MainClass>com.chazwarp.jasau.Main</MainClass>
 	  <Param>one</Param>
 	  <Param>two</Param>
@@ -18,8 +18,8 @@
 	<InstallType>CurrentUser</InstallType>
 	
 	<!-- Splash and Logo -->
-	<SplashPNG>resources/Jasau.png</SplashPNG>
-	<BundleLogoPNG>resources/Jasau.png</BundleLogoPNG>
+	<SplashPNG>src/resources/Icon.png</SplashPNG>
+	<BundleLogoPNG>src/resources/Icon.png</BundleLogoPNG>
 	
 	<!-- JVM options (e.g. extra memory) -->
 	<JvmOptions>
