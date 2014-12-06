@@ -19,11 +19,13 @@ import org.scribe.oauth.OAuthService;
 
 import com.chazwarp.jasau.Helper.ConfigHelper;
 import com.chazwarp.jasau.JFrame.MainWindow;
+import com.chazwarp.jasau.JFrame.PreferencesWindow;
 import com.tumblr.jumblr.JumblrClient;
 
 public class Main {
 
 	static JFrame mainWindow = null;
+	static JFrame prefWindow = null;
 	final static String ConsumerKey = "UgjrWgFKKJ1JLA0Yvar8xd5AEMwihDRAgQ9FsEUCGsCpV2m4ui";
 	final static String ConsumerSecret = "jqmjIK9KG3TjgpjXAZvnxrO43gGEy9zHH1L0Ei3jkL40EJCETK";
 	public static String Token = "";
@@ -52,18 +54,18 @@ public class Main {
 		CreateNewWindow();
 	}
 	
-	public static void CreateNewWindow() {
+	private static void CreateNewWindow() {
 		mainWindow = MainWindow.CreateWindow();
 		mainWindow.setVisible(true);
 	}
 	
-	public static void SetClientToken() {
+	private static void SetClientToken() {
 		if(Token != null && TokenSecret != null) {
 			currentClient.setToken(Token, TokenSecret);
 		}
 	}
 	
-	public static void login() {
+	private static void Login() {
 		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://www.tumblr.com/connect/login_success.html").build();
 		Token requestToken = service.getRequestToken();
 		String authUrl = service.getAuthorizationUrl(requestToken);
@@ -84,11 +86,17 @@ public class Main {
 		SetClientToken();
 	}
 	
-	public static JumblrClient getClient() {
+	private static void OpenPrefWindow() {
+		prefWindow = PreferencesWindow.CreateWindow();
+		prefWindow.setVisible(true);
+	}
+	
+	public static JumblrClient GetClient() {
 		return currentClient;
 	}
 	
 	public static void ButtonClicked(String id) {
-		if(id == "Login") login();
+		if (id == "Login") Login();
+		else if (id == "Pref") OpenPrefWindow();
 	}
 }

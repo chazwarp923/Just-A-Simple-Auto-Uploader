@@ -18,7 +18,7 @@ public class CreatePost {
 			
 		PhotoPost pp = null;
 				
-		JumblrClient jc = Main.getClient();
+		JumblrClient jc = Main.GetClient();
 		pp = jc.newPost("chazthefurry.tumblr.com", PhotoPost.class);
 		pp.setPhoto(new Photo(image));
 		pp.setCaption(MainWindow.caption.getText());

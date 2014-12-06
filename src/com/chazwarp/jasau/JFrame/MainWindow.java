@@ -23,6 +23,7 @@ import com.chazwarp.jasau.Helper.ConfigHelper;
 import com.chazwarp.jasau.Helper.IconHelper;
 import com.chazwarp.jasau.Helper.Strings;
 import com.chazwarp.jasau.Listeners.LoginListener;
+import com.chazwarp.jasau.Listeners.PreferencesListener;
 import com.chazwarp.jasau.Listeners.SaveCaptionAndTagsListener;
 import com.chazwarp.jasau.Listeners.StartNewUploadListener;
 
@@ -33,6 +34,7 @@ public class MainWindow {
 	static Toolkit tk = Toolkit.getDefaultToolkit();
 	static JMenuBar menuBar;
 	static JMenu optionsMenu;
+	static JMenuItem prefs;
 	static JMenuItem login;
 	static JMenuItem saveCapAndTag;
 	public static JProgressBar uploadProgress;
@@ -50,6 +52,9 @@ public class MainWindow {
 		mainWindow.add(mainPanel);
 		optionsMenu = new JMenu("Options");
 		menuBar.add(optionsMenu);
+		prefs = new JMenuItem("Preferences");
+		prefs.addActionListener(new PreferencesListener());
+		optionsMenu.add(prefs);
 		login = new JMenuItem("Login");
 		login.addActionListener(new LoginListener());
 		optionsMenu.add(login);
@@ -84,7 +89,8 @@ public class MainWindow {
 		}
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		mainWindow.setBounds(0, 0, screenSize.width/2, screenSize.height/2);
+		Dimension minSize = new Dimension(screenSize.width/2, screenSize.height/2);
+		mainWindow.setMinimumSize(minSize);
 		mainWindow.setLocationRelativeTo(null);//Centers The Window
 		
 		return mainWindow;
