@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 
 import com.chazwarp.jasau.Helper.IconHelper;
 import com.chazwarp.jasau.Helper.Strings;
+import com.chazwarp.jasau.Listeners.UseAutoSourcingChangeListener;
 
 public class PreferencesWindow {
 
@@ -21,8 +22,9 @@ public class PreferencesWindow {
 	static JPanel mainPanel = new JPanel();
 	static JTabbedPane tabs = new JTabbedPane();
 	static JPanel sourcing = new JPanel();
-	static JCheckBox useAutoSourcing = new JCheckBox();
-	static JCheckBox useNSFW = new JCheckBox();
+	static JCheckBox useAutoSourcing = new JCheckBox("Use Auto Sourcing");
+	public static JCheckBox useNSFW = new JCheckBox("Use NSFW Sources");
+	static JPanel sources = new JPanel();
 	
 	public static JFrame CreateWindow() {
 		
@@ -32,10 +34,11 @@ public class PreferencesWindow {
 		mainPanel.add(tabs);
 		
 		tabs.addTab("Image Sourcing", sourcing);
-		useAutoSourcing.setText("Use Auto Sourcing");
+		useAutoSourcing.addItemListener(new UseAutoSourcingChangeListener());
 		sourcing.add(useAutoSourcing);
-		useNSFW.setText("Use NSFW Sources");
+		useNSFW.setEnabled(false);
 		sourcing.add(useNSFW);
+		tabs.addTab("Sources", sources);
 		
 		
 		prefWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
