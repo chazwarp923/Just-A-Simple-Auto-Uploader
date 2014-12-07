@@ -7,14 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import com.chazwarp.jasau.Helper.ConfigHelper;
+import com.chazwarp.jasau.Helper.FileHelper;
 
 public class SaveCaptionAndTagsListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
-			ConfigHelper.WriteCaptionAndTagsToFile();
+			FileHelper.WriteCaptionAndTagsToFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

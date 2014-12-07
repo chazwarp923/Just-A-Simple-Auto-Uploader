@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import com.chazwarp.jasau.Main;
 import com.chazwarp.jasau.JFrame.MainWindow;
 
-public class ConfigHelper {
+public class FileHelper {
 	
 	private static final String savePrefix = "/Jasau/";
 	
@@ -69,6 +69,25 @@ public class ConfigHelper {
 		}
 	}
 	
+	public static void ReadFromTempFile() throws IOException {
+		
+		File file = new File(GetBaseSaveDirectory() + "OutputTemp");
+		
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		
+		for(int i=0; i < 11; i++) {
+			if(i != 9) br.readLine();
+			else if(i == 9) {
+				String tempString = br.readLine();
+				if(tempString != null) {
+					Main.Token = tempString.substring(27, 77);
+					Main.TokenSecret = tempString.substring(97, 147);
+				}
+			}
+		}
+		br.close();
+	}
+	
 	public static void WriteTokenToFile() throws IOException {
 		
 		File dir = new File(GetBaseSaveDirectory());
@@ -77,7 +96,7 @@ public class ConfigHelper {
 			dir.mkdirs();
 		}
 		
-		File saveFile = new File(GetBaseSaveDirectory() + "Tokens.ks");
+		File saveFile = new File(GetBaseSaveDirectory() + "Token.ks");
 		
 		if(saveFile.exists()) {
 			saveFile.delete();
@@ -121,7 +140,7 @@ public class ConfigHelper {
 		}
 	}
 	
-	private static String GetBaseSaveDirectory() {
+	public static String GetBaseSaveDirectory() {
 		String baseSaveDirectory = null;
 		String OS = (System.getProperty("os.name")).toUpperCase();
 		

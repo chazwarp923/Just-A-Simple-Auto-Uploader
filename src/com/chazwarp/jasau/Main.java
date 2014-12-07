@@ -4,7 +4,9 @@
 package com.chazwarp.jasau;
 
 import java.awt.Desktop;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -17,7 +19,7 @@ import org.scribe.builder.api.TumblrApi;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
-import com.chazwarp.jasau.Helper.ConfigHelper;
+import com.chazwarp.jasau.Helper.FileHelper;
 import com.chazwarp.jasau.JFrame.MainWindow;
 import com.chazwarp.jasau.JFrame.PreferencesWindow;
 import com.tumblr.jumblr.JumblrClient;
@@ -31,6 +33,7 @@ public class Main {
 	public static String Token = "";
 	public static String TokenSecret = "";
 	static JumblrClient currentClient = null;
+	static OutputStream os = null;
 	
 	public static void main(String[] args) {
 		
@@ -43,9 +46,9 @@ public class Main {
 		//Consumer Key, Consumer Secret
 		currentClient = new JumblrClient(ConsumerKey, ConsumerSecret);
 		
-		if(ConfigHelper.TokenExists()) {
+		if(FileHelper.TokenExists()) {
 			try {
-				ConfigHelper.ReadTokenFromFile();
+				FileHelper.ReadTokenFromFile();
 				SetClientToken();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -66,22 +69,32 @@ public class Main {
 	}
 	
 	private static void Login() {
-		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://www.tumblr.com/connect/login_success.html").build();
+		try {
+			os = new FileOutputStream(FileHelper.GetBaseSaveDirectory() + "OutputTemp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://www.thebest404pageever.com/").debugStream(os).build();
 		Token requestToken = service.getRequestToken();
 		String authUrl = service.getAuthorizationUrl(requestToken);
 		
-		if(Desktop.isDesktopSupported()) {
-			try {
-				Desktop.getDesktop().browse(new URI(authUrl));
-			} catch (IOException | URISyntaxException e) {
-				e.printStackTrace();
-			}
+		try {
+			FileHelper.ReadFromTempFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		
 		try {
-			ConfigHelper.WriteTokenToFile();
-		} catch (IOException e) {
-			e.printStackTrace();
+			Desktop.getDesktop().browse(new URI(authUrl));
+		} catch (IOException | URISyntaxException e2) {
+			e2.printStackTrace();
+		}
+		
+		try {
+			FileHelper.WriteTokenToFile();
+		} catch (IOException e3) {
+			e3.printStackTrace();
 		}
 		SetClientToken();
 	}

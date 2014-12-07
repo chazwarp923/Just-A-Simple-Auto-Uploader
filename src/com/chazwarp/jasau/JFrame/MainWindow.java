@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
-import com.chazwarp.jasau.Helper.ConfigHelper;
+import com.chazwarp.jasau.Helper.FileHelper;
 import com.chazwarp.jasau.Helper.IconHelper;
 import com.chazwarp.jasau.Helper.Strings;
 import com.chazwarp.jasau.Listeners.LoginListener;
@@ -80,9 +80,9 @@ public class MainWindow {
 		startUpload.addActionListener(new StartNewUploadListener());
 		mainPanel.add(startUpload, CreateConstraints(GridBagConstraints.FIRST_LINE_END, GridBagConstraints.HORIZONTAL, 2, 0, 1, 1, 0.5, 0, 1, 1, 5, 5, 5, 5));
 		
-		if(ConfigHelper.CaptionAndTagsExists()) {
+		if(FileHelper.CaptionAndTagsExists()) {
 			try {
-				ConfigHelper.ReadCaptionAndTagsFromFile();
+				FileHelper.ReadCaptionAndTagsFromFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
