@@ -1,8 +1,8 @@
 *.class
-.settings/
+settings/
 .classpath
 .project
-*.bin/
+bin/
 
 
 # Mobile Tools for Java (J2ME)
