@@ -75,7 +75,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://www.thebest404pageever.com/").debugStream(os).build();
+		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://www.thebest404pageever.com/").debugStream(os).debug().build();
 		Token requestToken = service.getRequestToken();
 		String authUrl = service.getAuthorizationUrl(requestToken);
 		

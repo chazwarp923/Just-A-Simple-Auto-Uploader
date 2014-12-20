@@ -88,7 +88,7 @@ public class MainWindow {
 			}
 		}
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension screenSize = tk.getScreenSize();
 		Dimension minSize = new Dimension(screenSize.width/2, screenSize.height/2);
 		mainWindow.setMinimumSize(minSize);
 		mainWindow.setLocationRelativeTo(null);//Centers The Window
