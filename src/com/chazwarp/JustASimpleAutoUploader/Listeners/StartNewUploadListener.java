@@ -1,12 +1,12 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.Listeners;
+package com.chazwarp.JustASimpleAutoUploader.Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.chazwarp.jasau.Upload;
+import com.chazwarp.JustASimpleAutoUploader.Upload;
 
 public class StartNewUploadListener implements ActionListener{
 
@@ -17,6 +17,7 @@ public class StartNewUploadListener implements ActionListener{
 		task = new Upload();
 		task.addPropertyChangeListener(new ProgressChangeListener());
 		task.execute();
+		System.out.println("Started Upload");
 	}
 
 }

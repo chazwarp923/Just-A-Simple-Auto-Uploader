@@ -1,12 +1,12 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.Listeners;
+package com.chazwarp.JustASimpleAutoUploader.Listeners;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import com.chazwarp.jasau.JFrame.MainWindow;
+import com.chazwarp.JustASimpleAutoUploader.JFrame.MainWindow;
 
 public class ProgressChangeListener implements PropertyChangeListener {
 

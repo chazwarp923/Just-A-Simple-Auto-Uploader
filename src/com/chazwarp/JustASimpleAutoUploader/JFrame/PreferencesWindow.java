@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.JFrame;
+package com.chazwarp.JustASimpleAutoUploader.JFrame;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -12,10 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import com.chazwarp.jasau.Helper.IconHelper;
-import com.chazwarp.jasau.Helper.Strings;
-import com.chazwarp.jasau.Listeners.UseAutoSourcingChangeListener;
-import com.chazwarp.jasau.Listeners.UseBitlyChangeListener;
+import com.chazwarp.JustASimpleAutoUploader.Helper.IconHelper;
+import com.chazwarp.JustASimpleAutoUploader.Helper.Strings;
+import com.chazwarp.JustASimpleAutoUploader.Listeners.UseAutoSourcingChangeListener;
+import com.chazwarp.JustASimpleAutoUploader.Listeners.UseBitlyChangeListener;
 
 public class PreferencesWindow {
 

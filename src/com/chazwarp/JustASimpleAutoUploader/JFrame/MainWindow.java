@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.JFrame;
+package com.chazwarp.JustASimpleAutoUploader.JFrame;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -19,13 +19,13 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
-import com.chazwarp.jasau.Helper.FileHelper;
-import com.chazwarp.jasau.Helper.IconHelper;
-import com.chazwarp.jasau.Helper.Strings;
-import com.chazwarp.jasau.Listeners.LoginListener;
-import com.chazwarp.jasau.Listeners.PreferencesListener;
-import com.chazwarp.jasau.Listeners.SaveCaptionAndTagsListener;
-import com.chazwarp.jasau.Listeners.StartNewUploadListener;
+import com.chazwarp.JustASimpleAutoUploader.Helper.FileHelper;
+import com.chazwarp.JustASimpleAutoUploader.Helper.IconHelper;
+import com.chazwarp.JustASimpleAutoUploader.Helper.Strings;
+import com.chazwarp.JustASimpleAutoUploader.Listeners.LoginListener;
+import com.chazwarp.JustASimpleAutoUploader.Listeners.PreferencesListener;
+import com.chazwarp.JustASimpleAutoUploader.Listeners.SaveCaptionAndTagsListener;
+import com.chazwarp.JustASimpleAutoUploader.Listeners.StartNewUploadListener;
 
 public class MainWindow {
 

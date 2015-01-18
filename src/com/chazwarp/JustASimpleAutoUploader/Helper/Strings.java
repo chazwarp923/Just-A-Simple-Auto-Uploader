@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau.Helper;
+package com.chazwarp.JustASimpleAutoUploader.Helper;
 
 public class Strings {
 

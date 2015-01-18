@@ -1,7 +1,7 @@
 /**
 @author Chaz Kerby
 */
-package com.chazwarp.jasau;
+package com.chazwarp.JustASimpleAutoUploader;
 
 import java.awt.Desktop;
 import java.io.FileOutputStream;
@@ -19,20 +19,20 @@ import org.scribe.builder.api.TumblrApi;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
-import com.chazwarp.jasau.Helper.FileHelper;
-import com.chazwarp.jasau.JFrame.MainWindow;
-import com.chazwarp.jasau.JFrame.PreferencesWindow;
+import com.chazwarp.JustASimpleAutoUploader.Helper.FileHelper;
+import com.chazwarp.JustASimpleAutoUploader.JFrame.MainWindow;
+import com.chazwarp.JustASimpleAutoUploader.JFrame.PreferencesWindow;
 import com.tumblr.jumblr.JumblrClient;
 
 public class Main {
 
 	static JFrame mainWindow = null;
 	static JFrame prefWindow = null;
-	final static String ConsumerKey = "UgjrWgFKKJ1JLA0Yvar8xd5AEMwihDRAgQ9FsEUCGsCpV2m4ui";
-	final static String ConsumerSecret = "jqmjIK9KG3TjgpjXAZvnxrO43gGEy9zHH1L0Ei3jkL40EJCETK";
+	final protected static String ConsumerKey = "UgjrWgFKKJ1JLA0Yvar8xd5AEMwihDRAgQ9FsEUCGsCpV2m4ui";
+	final protected static String ConsumerSecret = "jqmjIK9KG3TjgpjXAZvnxrO43gGEy9zHH1L0Ei3jkL40EJCETK";
 	public static String Token = "";
 	public static String TokenSecret = "";
-	static JumblrClient currentClient = null;
+	public static JumblrClient currentClient = null;
 	static OutputStream os = null;
 	
 	public static void main(String[] args) {
@@ -102,10 +102,6 @@ public class Main {
 	private static void OpenPrefWindow() {
 		prefWindow = PreferencesWindow.CreateWindow();
 		prefWindow.setVisible(true);
-	}
-	
-	public static JumblrClient GetClient() {
-		return currentClient;
 	}
 	
 	public static void ButtonClicked(String id) {
