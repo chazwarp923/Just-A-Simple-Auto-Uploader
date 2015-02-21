@@ -3,10 +3,9 @@
 */
 package com.chazwarp.JustASimpleAutoUploader.JFrame;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.io.IOException;
 
@@ -19,9 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
-import com.chazwarp.JustASimpleAutoUploader.Helper.FileHelper;
-import com.chazwarp.JustASimpleAutoUploader.Helper.IconHelper;
-import com.chazwarp.JustASimpleAutoUploader.Helper.Strings;
+import com.chazwarp.JWarpCore.File.IconHelper;
+import com.chazwarp.JustASimpleAutoUploader.Helper.JasauFileHelper;
 import com.chazwarp.JustASimpleAutoUploader.Listeners.LoginListener;
 import com.chazwarp.JustASimpleAutoUploader.Listeners.PreferencesListener;
 import com.chazwarp.JustASimpleAutoUploader.Listeners.SaveCaptionAndTagsListener;
@@ -30,63 +28,60 @@ import com.chazwarp.JustASimpleAutoUploader.Listeners.StartNewUploadListener;
 public class MainWindow {
 
 	static JFrame mainWindow = new JFrame("Just a Simple Auto Uploader");
-	static JPanel mainPanel;
 	static Toolkit tk = Toolkit.getDefaultToolkit();
-	static JMenuBar menuBar;
-	static JMenu optionsMenu;
-	static JMenuItem prefs;
-	static JMenuItem login;
-	static JMenuItem saveCapAndTag;
-	public static JProgressBar uploadProgress;
-	public static JTextField caption;
-	public static JTextField tags;
-	static JButton startUpload;
+	static Dimension screenSize = tk.getScreenSize();
+	static JPanel mainPanel = new JPanel(new BorderLayout());
+	static JPanel compPanel = new JPanel(new FlowLayout());
+	static JMenuBar menuBar = new JMenuBar();
+	static JMenu optionsMenu = new JMenu("Options");
+	static JMenuItem prefs = new JMenuItem("Preferences");
+	static JMenuItem login = new JMenuItem("Login");
+	static JMenuItem saveCapAndTag = new JMenuItem("Save Caption & Tags");
+	public static JProgressBar uploadProgress = new JProgressBar(0, 100);
+	public static JTextField caption = new JTextField();
+	public static JTextField tags = new JTextField();
+	static JButton startUpload = new JButton();
 	
 	public static JFrame CreateWindow() {
 		
-		IconHelper.setWindowIcon(mainWindow, Strings.RESOURCE_LOCATION + "Icon.png");
-		
-		menuBar = new JMenuBar();
-		mainWindow.setJMenuBar(menuBar);
-		mainPanel = new JPanel(new GridBagLayout());
-		mainWindow.add(mainPanel);
-		optionsMenu = new JMenu("Options");
+		IconHelper.setWindowIcon(mainWindow, "/resources/" + "Icon.png");
+			
+		mainWindow.setJMenuBar(menuBar);	
 		menuBar.add(optionsMenu);
-		prefs = new JMenuItem("Preferences");
 		prefs.addActionListener(new PreferencesListener());
-		optionsMenu.add(prefs);
-		login = new JMenuItem("Login");
+		optionsMenu.add(prefs);		
 		login.addActionListener(new LoginListener());
-		optionsMenu.add(login);
-		saveCapAndTag = new JMenuItem("Save Caption & Tags");
+		optionsMenu.add(login);		
 		saveCapAndTag.addActionListener(new SaveCaptionAndTagsListener());
 		optionsMenu.add(saveCapAndTag);
 		
-		uploadProgress = new JProgressBar(0, 100);
-		uploadProgress.setValue(0);
-		uploadProgress.setStringPainted(true);
-		mainPanel.add(uploadProgress, CreateConstraints(GridBagConstraints.PAGE_END, GridBagConstraints.HORIZONTAL, 0, 2, 1, 1, 0.5, 0, 3, 1, 2, 2, 2, 2));
-		
-		caption = new JTextField();
 		caption.setText("Caption");
-		mainPanel.add(caption, CreateConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL, 0, 0, 1, 1, 0.5, 0, 1, 1, 5, 5, 5, 5));
-		tags = new JTextField();
+		compPanel.add(caption);		
 		tags.setText("Tags - Separate Tags with Commas");
-		mainPanel.add(tags, CreateConstraints(GridBagConstraints.PAGE_START, GridBagConstraints.HORIZONTAL, 1, 0, 1, 1, 0.5, 1, 1, 1, 5, 5, 5, 5));
-		
-		startUpload = new JButton();
-		startUpload.setIcon(IconHelper.CreateImageIcon(Strings.RESOURCE_LOCATION + "upload32.png"));
+		compPanel.add(tags);
+		startUpload.setIcon(IconHelper.CreateImageIcon("/resources/" + "upload32.png"));
 		startUpload.setToolTipText("Start a New Upload");
 		startUpload.addActionListener(new StartNewUploadListener());
-		mainPanel.add(startUpload, CreateConstraints(GridBagConstraints.FIRST_LINE_END, GridBagConstraints.HORIZONTAL, 2, 0, 1, 1, 0.5, 0, 1, 1, 5, 5, 5, 5));
+		compPanel.add(startUpload);
 		
-		if(FileHelper.CaptionAndTagsExists()) {
+		uploadProgress.setValue(0);
+		uploadProgress.setStringPainted(true);
+		mainPanel.add(uploadProgress, BorderLayout.PAGE_END);
+		
+		Dimension tempDim = startUpload.getPreferredSize();
+		compPanel.setPreferredSize(new Dimension(screenSize.width, tempDim.height + 4));
+		
+		mainPanel.add(compPanel, BorderLayout.PAGE_START);
+		mainWindow.add(mainPanel);	
+		
+		if(JasauFileHelper.CaptionAndTagsExists()) {
 			try {
-				FileHelper.ReadCaptionAndTagsFromFile();
+				JasauFileHelper.ReadCaptionAndTagsFromFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = tk.getScreenSize();
 		Dimension minSize = new Dimension(screenSize.width/2, screenSize.height/2);
@@ -94,22 +89,5 @@ public class MainWindow {
 		mainWindow.setLocationRelativeTo(null);//Centers The Window
 		
 		return mainWindow;
-	}
-	
-	private static GridBagConstraints CreateConstraints(int anchor, int fill, int gridX, int gridY, int ipadX, int ipadY, double weightX, double weightY, int gridWidth, int gridHeight, int insets1, int insets2, int insets3, int insets4) {
-		GridBagConstraints c = new GridBagConstraints();
-		c.anchor = anchor;
-		c.fill = fill;
-		c.gridx = gridX;
-		c.gridy = gridY;
-		c.ipadx = ipadX;
-		c.ipady = ipadY;
-		c.weightx = weightX;
-		c.weighty = weightY;
-		c.gridheight = gridHeight;
-		c.gridwidth = gridWidth;
-		c.insets = new Insets(insets1, insets2, insets3, insets4);
-		
-		return c;
 	}
 }

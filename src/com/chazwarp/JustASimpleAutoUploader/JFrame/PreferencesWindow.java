@@ -12,8 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import com.chazwarp.JustASimpleAutoUploader.Helper.IconHelper;
-import com.chazwarp.JustASimpleAutoUploader.Helper.Strings;
+import com.chazwarp.JWarpCore.File.IconHelper;
 import com.chazwarp.JustASimpleAutoUploader.Listeners.UseAutoSourcingChangeListener;
 import com.chazwarp.JustASimpleAutoUploader.Listeners.UseBitlyChangeListener;
 
@@ -33,7 +32,7 @@ public class PreferencesWindow {
 	
 	public static JFrame CreateWindow() {
 		
-		IconHelper.setWindowIcon(prefWindow, Strings.RESOURCE_LOCATION + "Icon.png");
+		IconHelper.setWindowIcon(prefWindow, "/resources/" + "Icon.png");
 		
 		prefWindow.add(mainPanel);
 		mainPanel.add(tabs);

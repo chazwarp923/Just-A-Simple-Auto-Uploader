@@ -12,19 +12,19 @@ import java.io.PrintWriter;
 import com.chazwarp.JustASimpleAutoUploader.Main;
 import com.chazwarp.JustASimpleAutoUploader.JFrame.MainWindow;
 
-public class FileHelper {
+public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 	
-	private static final String savePrefix = "/Jasau/";
+	public static final String savePrefix = "/Jasau/";
 	
 	public static void WriteCaptionAndTagsToFile() throws IOException {
 		
-		File dir = new File(GetBaseSaveDirectory());
+		File dir = new File(GetBaseSaveDirectory(savePrefix));
 		
 		if(!dir.exists()) {
 			dir.mkdirs();
 		}
 		
-		File saveFile = new File(GetBaseSaveDirectory() + "CaptionAndTags.cfg");
+		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "CaptionAndTags.cfg");
 		
 		if(saveFile.exists()) {
 			saveFile.delete();
@@ -42,7 +42,7 @@ public class FileHelper {
 	
 	public static void ReadCaptionAndTagsFromFile() throws IOException {
 		
-		File saveFile = new File(GetBaseSaveDirectory() + "CaptionAndTags.cfg");
+		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "CaptionAndTags.cfg");
 		
 		BufferedReader br = new BufferedReader(new FileReader(saveFile));
 		
@@ -59,7 +59,7 @@ public class FileHelper {
 	
 	public static boolean CaptionAndTagsExists() {
 		
-		File configFile = new File(GetBaseSaveDirectory() + "CaptionAndTags.cfg");
+		File configFile = new File(GetBaseSaveDirectory(savePrefix) + "CaptionAndTags.cfg");
 		
 		if(configFile.exists()) {
 			return true;
@@ -71,7 +71,7 @@ public class FileHelper {
 	
 	public static void ReadFromTempFile() throws IOException {
 		
-		File file = new File(GetBaseSaveDirectory() + "OutputTemp");
+		File file = new File(GetBaseSaveDirectory(savePrefix) + "OutputTemp");
 		
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		
@@ -90,13 +90,13 @@ public class FileHelper {
 	
 	public static void WriteTokenToFile() throws IOException {
 		
-		File dir = new File(GetBaseSaveDirectory());
+		File dir = new File(GetBaseSaveDirectory(savePrefix));
 		
 		if(!dir.exists()) {
 			dir.mkdirs();
 		}
 		
-		File saveFile = new File(GetBaseSaveDirectory() + "Token.ks");
+		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "Token.ks");
 		
 		if(saveFile.exists()) {
 			saveFile.delete();
@@ -113,7 +113,7 @@ public class FileHelper {
 	
 	public static void ReadTokenFromFile() throws IOException {
 		
-		File saveFile = new File(GetBaseSaveDirectory() + "Token.ks");
+		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "Token.ks");
 		
 		BufferedReader br = new BufferedReader(new FileReader(saveFile));
 		
@@ -130,7 +130,7 @@ public class FileHelper {
 	
 	public static boolean TokenExists() {
 		
-		File configFile = new File(GetBaseSaveDirectory() + "Token.ks");
+		File configFile = new File(GetBaseSaveDirectory(savePrefix) + "Token.ks");
 		
 		if(configFile.exists()) {
 			return true;
@@ -138,20 +138,5 @@ public class FileHelper {
 		else {
 			return false;
 		}
-	}
-	
-	public static String GetBaseSaveDirectory() {
-		String baseSaveDirectory = null;
-		String OS = (System.getProperty("os.name")).toUpperCase();
-		
-		if(OS.contains("WIN")) {
-			baseSaveDirectory = System.getenv("AppData");
-		}
-		else {
-			baseSaveDirectory = System.getProperty("user.home");
-			baseSaveDirectory += "/Library/Application Support";
-		}
-		
-		return baseSaveDirectory + savePrefix;
 	}
 }

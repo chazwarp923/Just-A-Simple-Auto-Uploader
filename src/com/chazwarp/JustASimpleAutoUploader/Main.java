@@ -19,7 +19,7 @@ import org.scribe.builder.api.TumblrApi;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
-import com.chazwarp.JustASimpleAutoUploader.Helper.FileHelper;
+import com.chazwarp.JustASimpleAutoUploader.Helper.JasauFileHelper;
 import com.chazwarp.JustASimpleAutoUploader.JFrame.MainWindow;
 import com.chazwarp.JustASimpleAutoUploader.JFrame.PreferencesWindow;
 import com.tumblr.jumblr.JumblrClient;
@@ -46,9 +46,9 @@ public class Main {
 		//Consumer Key, Consumer Secret
 		currentClient = new JumblrClient(ConsumerKey, ConsumerSecret);
 		
-		if(FileHelper.TokenExists()) {
+		if(JasauFileHelper.TokenExists()) {
 			try {
-				FileHelper.ReadTokenFromFile();
+				JasauFileHelper.ReadTokenFromFile();
 				SetClientToken();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -70,7 +70,7 @@ public class Main {
 	
 	private static void Login() {
 		try {
-			os = new FileOutputStream(FileHelper.GetBaseSaveDirectory() + "OutputTemp");
+			os = new FileOutputStream(JasauFileHelper.GetBaseSaveDirectory(JasauFileHelper.savePrefix) + "OutputTemp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +80,7 @@ public class Main {
 		String authUrl = service.getAuthorizationUrl(requestToken);
 		
 		try {
-			FileHelper.ReadFromTempFile();
+			JasauFileHelper.ReadFromTempFile();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -92,7 +92,7 @@ public class Main {
 		}
 		
 		try {
-			FileHelper.WriteTokenToFile();
+			JasauFileHelper.WriteTokenToFile();
 		} catch (IOException e3) {
 			e3.printStackTrace();
 		}
