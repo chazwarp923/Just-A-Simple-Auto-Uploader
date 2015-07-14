@@ -70,7 +70,7 @@ public class Main {
 	
 	private static void Login() {
 		try {
-			os = new FileOutputStream(JasauFileHelper.GetBaseSaveDirectory(JasauFileHelper.savePrefix) + "OutputTemp");
+			os = new FileOutputStream(JasauFileHelper.getSaveDirectory(JasauFileHelper.savePrefix, "OutputTemp"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
