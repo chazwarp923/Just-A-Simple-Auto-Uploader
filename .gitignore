@@ -1,5 +1,5 @@
 *.class
-.settings
+.settings/
 .classpath
 .project
 bin/
