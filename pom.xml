@@ -59,12 +59,11 @@
   			<artifactId>jumblr</artifactId>
   			<version>0.0.11</version>
   		</dependency>
+  		<dependency>
+  			<groupId>com.chazwarp.JWarpCore</groupId>
+  			<artifactId>JWarpCore</artifactId>
+  			<version>0.1-SNAPSHOT</version>
+  		</dependency>
   	</dependencies>
   </dependencyManagement>
-  <parent>
-  	<groupId>com.chazwarp.JWarpCore</groupId>
-  	<artifactId>JWarpCore</artifactId>
-  	<version>0.1-SNAPSHOT</version>
-  	<relativePath></relativePath>
-  </parent>
 </project>
