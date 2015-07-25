@@ -39,4 +39,9 @@
   		</dependency>
   	</dependencies>
   </dependencyManagement>
+  <parent>
+  	<groupId>com.chazwarp.JWarpCore</groupId>
+  	<artifactId>JWarpCore</artifactId>
+  	<version>0.1-SNAPSHOT</version>
+  </parent>
 </project>
