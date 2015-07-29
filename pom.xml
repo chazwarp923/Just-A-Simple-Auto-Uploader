@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.chazwarp.JustASimpleAutoUploader</groupId>
+  <groupId>com.chazwarp</groupId>
   <artifactId>Just-A-Simple-Auto-Uploader</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <build>
@@ -52,7 +52,7 @@
   		<artifactId>jumblr</artifactId>
   	</dependency>
   	<dependency>
-  		<groupId>com.chazwarp.JWarpCore</groupId>
+  		<groupId>com.chazwarp</groupId>
   		<artifactId>JWarpCore</artifactId>
   	</dependency>
   </dependencies>
@@ -64,7 +64,7 @@
   			<version>0.0.11</version>
   		</dependency>
   		<dependency>
-  			<groupId>com.chazwarp.JWarpCore</groupId>
+  			<groupId>com.chazwarp</groupId>
   			<artifactId>JWarpCore</artifactId>
   			<version>0.1-SNAPSHOT</version>
   		</dependency>
