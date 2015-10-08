@@ -55,6 +55,14 @@
   		<groupId>com.chazwarp</groupId>
   		<artifactId>JWarpCore</artifactId>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.httpcomponents</groupId>
+  		<artifactId>httpclient</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.httpcomponents</groupId>
+  		<artifactId>httpcore</artifactId>
+  	</dependency>
   </dependencies>
   <dependencyManagement>
   	<dependencies>
@@ -67,6 +75,16 @@
   			<groupId>com.chazwarp</groupId>
   			<artifactId>JWarpCore</artifactId>
   			<version>0.1-SNAPSHOT</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.apache.httpcomponents</groupId>
+  			<artifactId>httpclient</artifactId>
+  			<version>4.5.1</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.apache.httpcomponents</groupId>
+  			<artifactId>httpcore</artifactId>
+  			<version>4.4.3</version>
   		</dependency>
   	</dependencies>
   </dependencyManagement>

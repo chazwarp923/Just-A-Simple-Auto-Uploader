@@ -76,7 +76,7 @@ public class MainWindow {
 		
 		if(JasauFileHelper.CaptionAndTagsExists()) {
 			try {
-				JasauFileHelper.ReadCaptionAndTagsFromFile();
+				JasauFileHelper.readCaptionAndTagsFromFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

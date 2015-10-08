@@ -16,15 +16,15 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 	
 	public static final String savePrefix = "/Jasau/";
 	
-	public static void WriteCaptionAndTagsToFile() throws IOException {
+	public static void writeCaptionAndTagsToFile() throws IOException {
 		
-		File dir = new File(GetBaseSaveDirectory(savePrefix));
+		File dir = new File(getSaveDirectory(savePrefix));
 		
 		if(!dir.exists()) {
 			dir.mkdirs();
 		}
 		
-		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "CaptionAndTags.cfg");
+		File saveFile = new File(getSaveDirectory(savePrefix, "CaptionAndTags.cfg"));
 		
 		if(saveFile.exists()) {
 			saveFile.delete();
@@ -40,9 +40,9 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 		
 	}
 	
-	public static void ReadCaptionAndTagsFromFile() throws IOException {
+	public static void readCaptionAndTagsFromFile() throws IOException {
 		
-		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "CaptionAndTags.cfg");
+		File saveFile = new File(getSaveDirectory(savePrefix, "CaptionAndTags.cfg"));
 		
 		BufferedReader br = new BufferedReader(new FileReader(saveFile));
 		
@@ -59,7 +59,7 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 	
 	public static boolean CaptionAndTagsExists() {
 		
-		File configFile = new File(GetBaseSaveDirectory(savePrefix) + "CaptionAndTags.cfg");
+		File configFile = new File(getSaveDirectory(savePrefix, "CaptionAndTags.cfg"));
 		
 		if(configFile.exists()) {
 			return true;
@@ -69,9 +69,9 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 		}
 	}
 	
-	public static void ReadFromTempFile() throws IOException {
+	public static void readFromTempFile() throws IOException {
 		
-		File file = new File(GetBaseSaveDirectory(savePrefix) + "OutputTemp");
+		File file = new File(getSaveDirectory(savePrefix, "OutputTemp"));
 		
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		
@@ -88,15 +88,15 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 		br.close();
 	}
 	
-	public static void WriteTokenToFile() throws IOException {
+	public static void writeTokenToFile() throws IOException {
 		
-		File dir = new File(GetBaseSaveDirectory(savePrefix));
+		File dir = new File(getSaveDirectory(savePrefix));
 		
 		if(!dir.exists()) {
 			dir.mkdirs();
 		}
 		
-		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "Token.ks");
+		File saveFile = new File(getSaveDirectory(savePrefix, "Token.ks"));
 		
 		if(saveFile.exists()) {
 			saveFile.delete();
@@ -111,9 +111,9 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 		pw.close();
 	}
 	
-	public static void ReadTokenFromFile() throws IOException {
+	public static void readTokenFromFile() throws IOException {
 		
-		File saveFile = new File(GetBaseSaveDirectory(savePrefix) + "Token.ks");
+		File saveFile = new File(getSaveDirectory(savePrefix, "Token.ks"));
 		
 		BufferedReader br = new BufferedReader(new FileReader(saveFile));
 		
@@ -128,9 +128,9 @@ public class JasauFileHelper extends com.chazwarp.JWarpCore.File.FileHelper {
 		br.close();
 	}
 	
-	public static boolean TokenExists() {
+	public static boolean tokenExists() {
 		
-		File configFile = new File(GetBaseSaveDirectory(savePrefix) + "Token.ks");
+		File configFile = new File(getSaveDirectory(savePrefix, "Token.ks"));
 		
 		if(configFile.exists()) {
 			return true;

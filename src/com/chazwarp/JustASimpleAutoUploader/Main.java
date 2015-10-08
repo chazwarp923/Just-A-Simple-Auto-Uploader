@@ -6,7 +6,6 @@ package com.chazwarp.JustASimpleAutoUploader;
 import java.awt.Desktop;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -33,7 +32,7 @@ public class Main {
 	public static String Token = "";
 	public static String TokenSecret = "";
 	public static JumblrClient currentClient = null;
-	static OutputStream os = null;
+	static FileOutputStream fos = null;
 	
 	public static void main(String[] args) {
 		
@@ -43,69 +42,68 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		//Consumer Key, Consumer Secret
 		currentClient = new JumblrClient(ConsumerKey, ConsumerSecret);
 		
-		if(JasauFileHelper.TokenExists()) {
+		if(JasauFileHelper.tokenExists()) {
 			try {
-				JasauFileHelper.ReadTokenFromFile();
-				SetClientToken();
+				JasauFileHelper.readTokenFromFile();
+				setClientToken();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		CreateNewWindow();
+		createNewWindow();
 	}
 	
-	private static void CreateNewWindow() {
+	private static void createNewWindow() {
 		mainWindow = MainWindow.CreateWindow();
 		mainWindow.setVisible(true);
 	}
 	
-	private static void SetClientToken() {
+	private static void setClientToken() {
 		if(Token != null && TokenSecret != null) {
 			currentClient.setToken(Token, TokenSecret);
 		}
 	}
 	
-	private static void Login() {
+	private static void login() {
 		try {
-			os = new FileOutputStream(JasauFileHelper.GetBaseSaveDirectory(JasauFileHelper.savePrefix) + "OutputTemp");
+			fos = new FileOutputStream(JasauFileHelper.getSaveDirectory(JasauFileHelper.savePrefix, "OutputTemp"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://www.thebest404pageever.com/").debugStream(os).debug().build();
+		OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ConsumerKey).apiSecret(ConsumerSecret).callback("http://127.0.0.1").debugStream(fos).build();
 		Token requestToken = service.getRequestToken();
 		String authUrl = service.getAuthorizationUrl(requestToken);
 		
 		try {
-			JasauFileHelper.ReadFromTempFile();
-		} catch (IOException e1) {
+			Desktop.getDesktop().browse(new URI(authUrl));
+		} catch (IOException | URISyntaxException e1) {
 			e1.printStackTrace();
 		}
 		
 		try {
-			Desktop.getDesktop().browse(new URI(authUrl));
-		} catch (IOException | URISyntaxException e2) {
+			JasauFileHelper.readFromTempFile();
+		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
 		
 		try {
-			JasauFileHelper.WriteTokenToFile();
+			JasauFileHelper.writeTokenToFile();
 		} catch (IOException e3) {
 			e3.printStackTrace();
 		}
-		SetClientToken();
+		setClientToken();
 	}
 	
-	private static void OpenPrefWindow() {
+	private static void openPrefWindow() {
 		prefWindow = PreferencesWindow.CreateWindow();
 		prefWindow.setVisible(true);
 	}
 	
-	public static void ButtonClicked(String id) {
-		if (id == "Login") Login();
-		else if (id == "Pref") OpenPrefWindow();
+	public static void buttonClicked(String id) {
+		if (id == "Login") login();
+		else if (id == "Pref") openPrefWindow();
 	}
 }

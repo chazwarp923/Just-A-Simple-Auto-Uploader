@@ -12,7 +12,7 @@ public class LoginListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Main.ButtonClicked("Login");
+		Main.buttonClicked("Login");
 	}
 
 }

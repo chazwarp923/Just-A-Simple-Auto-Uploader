@@ -14,7 +14,7 @@ public class SaveCaptionAndTagsListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
-			JasauFileHelper.WriteCaptionAndTagsToFile();
+			JasauFileHelper.writeCaptionAndTagsToFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

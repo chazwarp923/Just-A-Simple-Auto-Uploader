@@ -12,6 +12,6 @@ public class PreferencesListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Main.ButtonClicked("Pref");
+		Main.buttonClicked("Pref");
 	}
 }
